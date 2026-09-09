@@ -1,0 +1,992 @@
+/**
+ * ============================================================================
+ * Portal Cloud 9 - Cart Styles
+ * ============================================================================
+ * 
+ * Version: 8.3.6
+ * Author: Brian Agoi (Gradyzer)
+ * Company: Gradyzer
+ * License: GPL-2.0+
+ * ============================================================================
+ */
+
+/**
+ * ============================================================================
+ * Portal Cloud 9 - Shopping Cart Styles
+ * ============================================================================
+ * Version: 8.3.5
+ * Author: Brian Agoi (Gradyzer)
+ * Company: Gradyzer
+ * ============================================================================
+ */
+
+/* ── CSS custom properties (light mode defaults) ─────────────────── */
+:root {
+    --p9-cart-primary:#1e90ff;
+    --p9-cart-primary-dark:#0066cc;
+    --p9-cart-success:#10b981;
+    --p9-cart-danger:#ef4444;
+    --p9-cart-warning:#f59e0b;
+    --p9-cart-glass-bg:rgba(255,255,255,0.85);
+    --p9-cart-glass-border:rgba(255,255,255,0.3);
+    --p9-cart-text:#1e293b;
+    --p9-cart-text-muted:#64748b;
+    --p9-cart-shadow:0 8px 32px rgba(31,38,135,0.15);
+    --p9-cart-radius:16px;
+    --p9-cart-transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
+
+/* ── Dark mode variable overrides ───────────────────────────────── */
+
+/* ── Page wrapper and container ─────────────────────────────────── */
+.p9-cart-wrapper {
+    max-width:1200px;
+    margin:0 auto;
+    padding:24px}
+
+.p9-cart-container {
+    display:grid;
+    grid-template-columns:1fr 380px;
+    gap:24px;
+    align-items:start}
+
+@media (max-width:968px) {
+    .p9-cart-container {
+    grid-template-columns:1fr}
+
+}
+
+/* ── Cart header banner with gradient and icon ───────────────────── */
+.p9-cart-header {
+    grid-column:1 / -1;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:24px 28px;
+    background:var(--p9-cart-glass-bg);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border:1px solid var(--p9-cart-glass-border);
+    border-radius:var(--p9-cart-radius);
+    box-shadow:var(--p9-cart-shadow);
+    position:relative;
+    overflow:hidden}
+
+.p9-cart-header::before {
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:3px;
+    background:linear-gradient(90deg,var(--p9-cart-primary),#667eea,var(--p9-cart-primary));
+    background-size:200% 100%;
+    animation:p9-gradient-shift 3s ease infinite}
+
+@keyframes p9-gradient-shift {
+    0%,100% {
+    background-position:0% 50%}
+
+50% {
+    background-position:100% 50%}
+
+}
+
+/* ── Header title group layout ──────────────────────────────────── */
+.p9-cart-title-group {
+    display:flex;
+    align-items:center;
+    gap:16px}
+
+.p9-cart-icon {
+    width:48px;
+    height:48px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,var(--p9-cart-primary),#667eea);
+    border-radius:12px;
+    color:white;
+    font-size:24px}
+
+.p9-cart-title {
+    margin:0;
+    font-size:26px;
+    font-weight:700;
+    color:var(--p9-cart-text);
+    letter-spacing:-0.5px}
+
+/* ── Cart item count badge ──────────────────────────────────────── */
+.p9-cart-count {
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:8px 16px;
+    background:rgba(30,144,255,0.1);
+    border:1px solid rgba(30,144,255,0.2);
+    border-radius:24px;
+    font-size:14px;
+    font-weight:600;
+    color:var(--p9-cart-primary);
+    transition:var(--p9-cart-transition)}
+
+.p9-cart-count-number {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:24px;
+    height:24px;
+    background:var(--p9-cart-primary);
+    color:white;
+    border-radius:50%;
+    font-size:13px}
+
+/* ── Cart items list section ────────────────────────────────────── */
+.p9-cart-items-section {
+    display:flex;
+    flex-direction:column;
+    gap:16px}
+
+/* ── Individual cart item card ──────────────────────────────────── */
+.p9-cart-item {
+    display:grid;
+    grid-template-columns:100px 1fr auto;
+    gap:20px;
+    padding:20px;
+    background:var(--p9-cart-glass-bg);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border:1px solid var(--p9-cart-glass-border);
+    border-radius:var(--p9-cart-radius);
+    box-shadow:var(--p9-cart-shadow);
+    transition:var(--p9-cart-transition);
+    position:relative;
+    overflow:hidden}
+
+.p9-cart-item::after {
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:linear-gradient(135deg,transparent 40%,rgba(255,255,255,0.1) 50%,transparent 60%);
+    pointer-events:none;
+    opacity:0;
+    transition:opacity 0.3s ease}
+
+.p9-cart-item:hover::after {
+    opacity:1}
+
+.p9-cart-item:hover {
+    transform:translateY(-2px);
+    box-shadow:0 12px 40px rgba(31,38,135,0.2)}
+
+/* ── Item remove and update state animations ─────────────────────── */
+.p9-cart-item.p9-removing {
+    animation:p9-item-remove 0.4s ease forwards}
+
+@keyframes p9-item-remove {
+    0% {
+    opacity:1;
+    transform:translateX(0) scale(1)}
+
+100% {
+    opacity:0;
+    transform:translateX(-30px) scale(0.95);
+    height:0;
+    padding:0;
+    margin:0;
+    border:none}
+
+}
+
+.p9-cart-item.p9-updating {
+    opacity:0.6;
+    pointer-events:none}
+
+.p9-cart-item.p9-updating::before {
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:3px;
+    background:linear-gradient(90deg,transparent,var(--p9-cart-primary),transparent);
+    animation:p9-loading-bar 1s ease infinite}
+
+@keyframes p9-loading-bar {
+    0% {
+    transform:translateX(-100%)}
+
+100% {
+    transform:translateX(100%)}
+
+}
+
+/* ── Item product image ─────────────────────────────────────────── */
+.p9-cart-item-image {
+    position:relative;
+    width:100px;
+    height:100px;
+    border-radius:12px;
+    overflow:hidden;
+    flex-shrink:0}
+
+.p9-cart-item-image img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform 0.3s ease}
+
+.p9-cart-item:hover .p9-cart-item-image img {
+    transform:scale(1.05)}
+
+.p9-cart-item-badge {
+    position:absolute;
+    top:8px;
+    left:8px;
+    padding:4px 10px;
+    background:linear-gradient(135deg,var(--p9-cart-danger),#f97316);
+    color:white;
+    font-size:11px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+    border-radius:6px;
+    box-shadow:0 2px 8px rgba(239,68,68,0.4)}
+
+/* ── Item details: name, meta, price ────────────────────────────── */
+.p9-cart-item-details {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:8px;
+    min-width:0}
+
+.p9-cart-item-name {
+    margin:0;
+    font-size:16px;
+    font-weight:600;
+    color:var(--p9-cart-text);
+    line-height:1.4}
+
+.p9-cart-item-name a {
+    color:inherit;
+    text-decoration:none;
+    transition:color 0.2s ease}
+
+.p9-cart-item-name a:hover {
+    color:var(--p9-cart-primary)}
+
+.p9-cart-item-meta {
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    font-size:13px;
+    color:var(--p9-cart-text-muted)}
+
+.p9-cart-item-sku {
+    display:flex;
+    align-items:center;
+    gap:4px}
+
+.p9-cart-item-price {
+    font-weight:600;
+    color:var(--p9-cart-success)}
+
+.p9-cart-item-variation {
+    padding:2px 8px;
+    background:rgba(100,116,139,0.1);
+    border-radius:4px;
+    font-size:12px}
+
+/* ── Quantity stepper control ───────────────────────────────────── */
+.p9-quantity-wrapper {
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:8px}
+
+.p9-quantity-control {
+    display:flex;
+    align-items:center;
+    background:rgba(100,116,139,0.1);
+    border-radius:10px;
+    overflow:hidden}
+
+.p9-qty-btn {
+    width:36px;
+    height:36px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:transparent;
+    border:none;
+    color:var(--p9-cart-text);
+    font-size:18px;
+    font-weight:600;
+    cursor:pointer;
+    transition:var(--p9-cart-transition)}
+
+.p9-qty-btn:hover:not(:disabled) {
+    background:var(--p9-cart-primary);
+    color:white}
+
+.p9-qty-btn:disabled {
+    opacity:0.4;
+    cursor:not-allowed}
+
+.p9-qty-input {
+    width:48px;
+    height:36px;
+    border:none;
+    background:transparent;
+    text-align:center;
+    font-size:15px;
+    font-weight:600;
+    color:var(--p9-cart-text);
+    -moz-appearance:textfield}
+
+.p9-qty-input::-webkit-outer-spin-button,.p9-qty-input::-webkit-inner-spin-button {
+    -webkit-appearance:none;
+    margin:0}
+
+/* ── Per-item action bar: subtotal and remove button ────────────── */
+.p9-cart-item-actions {
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    justify-content:space-between;
+    min-width:120px}
+
+.p9-item-subtotal {
+    font-size:20px;
+    font-weight:700;
+    color:var(--p9-cart-text);
+    white-space:nowrap}
+
+.p9-remove-btn {
+    display:flex;
+    align-items:center;
+    gap:6px;
+    padding:8px 14px;
+    background:rgba(239,68,68,0.1);
+    border:1px solid rgba(239,68,68,0.2);
+    border-radius:8px;
+    color:var(--p9-cart-danger);
+    font-size:13px;
+    font-weight:500;
+    cursor:pointer;
+    transition:var(--p9-cart-transition)}
+
+.p9-remove-btn:hover {
+    background:var(--p9-cart-danger);
+    border-color:var(--p9-cart-danger);
+    color:white}
+
+.p9-remove-btn svg {
+    width:14px;
+    height:14px}
+
+.p9-remove-btn.p9-loading {
+    pointer-events:none}
+
+.p9-remove-btn.p9-loading svg {
+    animation:p9-spin 0.8s linear infinite}
+
+@keyframes p9-spin {
+    from {
+    transform:rotate(0deg)}
+
+to {
+    transform:rotate(360deg)}
+
+}
+
+/* ── Order summary sidebar card ─────────────────────────────────── */
+.p9-cart-summary {
+    position:sticky;
+    top:24px;
+    background:var(--p9-cart-glass-bg);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border:1px solid var(--p9-cart-glass-border);
+    border-radius:var(--p9-cart-radius);
+    box-shadow:var(--p9-cart-shadow);
+    overflow:hidden}
+
+.p9-summary-header {
+    padding:20px 24px;
+    background:linear-gradient(135deg,rgba(30,144,255,0.1),rgba(102,126,234,0.1));
+    border-bottom:1px solid var(--p9-cart-glass-border)}
+
+.p9-summary-title {
+    margin:0;
+    font-size:18px;
+    font-weight:700;
+    color:var(--p9-cart-text)}
+
+.p9-summary-body {
+    padding:24px}
+
+.p9-summary-row {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 0;
+    font-size:15px;
+    color:var(--p9-cart-text-muted);
+    border-bottom:1px dashed rgba(100,116,139,0.2)}
+
+.p9-summary-row:last-of-type {
+    border-bottom:none}
+
+.p9-summary-row span:last-child {
+    font-weight:600;
+    color:var(--p9-cart-text)}
+
+.p9-summary-row.p9-discount span:last-child {
+    color:var(--p9-cart-success)}
+
+/* ── Summary total row ──────────────────────────────────────────── */
+.p9-summary-total {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 0 0;
+    margin-top:16px;
+    border-top:2px solid var(--p9-cart-glass-border)}
+
+.p9-summary-total-label {
+    font-size:16px;
+    font-weight:600;
+    color:var(--p9-cart-text)}
+
+.p9-summary-total-value {
+    font-size:28px;
+    font-weight:800;
+    background:linear-gradient(135deg,var(--p9-cart-primary),#667eea);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text}
+
+/* ── Coupon code input section ──────────────────────────────────── */
+.p9-coupon-section {
+    margin-top:20px;
+    padding-top:20px;
+    border-top:1px solid var(--p9-cart-glass-border)}
+
+.p9-coupon-toggle {
+    display:flex;
+    align-items:center;
+    gap:8px;
+    width:100%;
+    padding:0;
+    background:none;
+    border:none;
+    color:var(--p9-cart-primary);
+    font-size:14px;
+    font-weight:500;
+    cursor:pointer;
+    transition:var(--p9-cart-transition)}
+
+.p9-coupon-toggle:hover {
+    color:var(--p9-cart-primary-dark)}
+
+.p9-coupon-toggle svg {
+    width:18px;
+    height:18px;
+    transition:transform 0.3s ease}
+
+.p9-coupon-toggle.p9-open svg {
+    transform:rotate(180deg)}
+
+.p9-coupon-form {
+    display:none;
+    margin-top:16px;
+    animation:p9-slide-down 0.3s ease}
+
+.p9-coupon-form.p9-visible {
+    display:block}
+
+@keyframes p9-slide-down {
+    from {
+    opacity:0;
+    transform:translateY(-10px)}
+
+to {
+    opacity:1;
+    transform:translateY(0)}
+
+}
+
+.p9-coupon-input-wrap {
+    display:flex;
+    gap:10px}
+
+.p9-coupon-input {
+    flex:1;
+    padding:12px 16px;
+    background:rgba(100,116,139,0.1);
+    border:1px solid transparent;
+    border-radius:10px;
+    font-size:14px;
+    color:var(--p9-cart-text);
+    transition:var(--p9-cart-transition)}
+
+.p9-coupon-input:focus {
+    outline:none;
+    border-color:var(--p9-cart-primary);
+    background:rgba(30,144,255,0.05)}
+
+.p9-coupon-input::placeholder {
+    color:var(--p9-cart-text-muted)}
+
+.p9-coupon-apply {
+    padding:12px 20px;
+    background:linear-gradient(135deg,var(--p9-cart-primary),#667eea);
+    border:none;
+    border-radius:10px;
+    color:white;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:var(--p9-cart-transition);
+    white-space:nowrap}
+
+.p9-coupon-apply:hover {
+    transform:translateY(-1px);
+    box-shadow:0 4px 15px rgba(30,144,255,0.4)}
+
+.p9-coupon-apply:disabled {
+    opacity:0.6;
+    cursor:not-allowed;
+    transform:none}
+
+.p9-coupon-message {
+    margin-top:10px;
+    padding:10px 14px;
+    border-radius:8px;
+    font-size:13px;
+    display:none}
+
+.p9-coupon-message.p9-success {
+    display:block;
+    background:rgba(16,185,129,0.1);
+    border:1px solid rgba(16,185,129,0.3);
+    color:var(--p9-cart-success)}
+
+.p9-coupon-message.p9-error {
+    display:block;
+    background:rgba(239,68,68,0.1);
+    border:1px solid rgba(239,68,68,0.3);
+    color:var(--p9-cart-danger)}
+
+.p9-applied-coupons {
+    margin-top:12px}
+
+.p9-applied-coupon {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 14px;
+    background:rgba(16,185,129,0.1);
+    border:1px solid rgba(16,185,129,0.2);
+    border-radius:8px;
+    margin-bottom:8px}
+
+.p9-coupon-code {
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+    font-weight:600;
+    color:var(--p9-cart-success);
+    text-transform:uppercase}
+
+.p9-coupon-code svg {
+    width:16px;
+    height:16px}
+
+.p9-remove-coupon {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:24px;
+    height:24px;
+    background:rgba(239,68,68,0.1);
+    border:none;
+    border-radius:50%;
+    color:var(--p9-cart-danger);
+    cursor:pointer;
+    transition:var(--p9-cart-transition)}
+
+.p9-remove-coupon:hover {
+    background:var(--p9-cart-danger);
+    color:white}
+
+.p9-remove-coupon svg {
+    width:12px;
+    height:12px}
+
+/* ── Checkout button and continue shopping links ────────────────── */
+.p9-summary-actions {
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-top:24px}
+
+.p9-btn {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:16px 24px;
+    border-radius:12px;
+    font-size:15px;
+    font-weight:600;
+    text-decoration:none;
+    cursor:pointer;
+    transition:var(--p9-cart-transition)}
+
+.p9-btn-primary {
+    background:linear-gradient(135deg,var(--p9-cart-primary),#667eea);
+    border:none;
+    color:white;
+    box-shadow:0 4px 15px rgba(30,144,255,0.3)}
+
+.p9-btn-primary:hover {
+    transform:translateY(-2px);
+    box-shadow:0 8px 25px rgba(30,144,255,0.4)}
+
+.p9-btn-outline {
+    background:transparent;
+    border:2px solid var(--p9-cart-glass-border);
+    color:var(--p9-cart-text)}
+
+.p9-btn-outline:hover {
+    border-color:var(--p9-cart-primary);
+    color:var(--p9-cart-primary);
+    background:rgba(30,144,255,0.05)}
+
+.p9-btn svg {
+    width:18px;
+    height:18px}
+
+/* ── Empty cart state ───────────────────────────────────────────── */
+.p9-empty-cart {
+    grid-column:1 / -1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:80px 40px;
+    background:var(--p9-cart-glass-bg);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border:1px solid var(--p9-cart-glass-border);
+    border-radius:var(--p9-cart-radius);
+    box-shadow:var(--p9-cart-shadow);
+    text-align:center}
+
+.p9-empty-icon {
+    width:120px;
+    height:120px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,rgba(30,144,255,0.1),rgba(102,126,234,0.1));
+    border-radius:50%;
+    margin-bottom:24px;
+    animation:p9-float 3s ease-in-out infinite}
+
+@keyframes p9-float {
+    0%,100% {
+    transform:translateY(0)}
+
+50% {
+    transform:translateY(-10px)}
+
+}
+
+.p9-empty-icon svg {
+    width:60px;
+    height:60px;
+    color:var(--p9-cart-primary);
+    opacity:0.8}
+
+.p9-empty-title {
+    margin:0 0 12px;
+    font-size:28px;
+    font-weight:700;
+    color:var(--p9-cart-text)}
+
+.p9-empty-message {
+    margin:0 0 32px;
+    font-size:16px;
+    color:var(--p9-cart-text-muted);
+    max-width:400px}
+
+.p9-empty-cart .p9-btn-primary {
+    padding:16px 32px}
+
+/* ── Toast notification system ──────────────────────────────────── */
+.p9-toast-container {
+    position:fixed;
+    top:24px;
+    right:24px;
+    z-index:10000;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    pointer-events:none}
+
+.p9-toast {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:16px 20px;
+    background:var(--p9-cart-glass-bg);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border:1px solid var(--p9-cart-glass-border);
+    border-radius:12px;
+    box-shadow:var(--p9-cart-shadow);
+    pointer-events:auto;
+    animation:p9-toast-in 0.4s ease;
+    max-width:400px}
+
+@keyframes p9-toast-in {
+    from {
+    opacity:0;
+    transform:translateX(100%)}
+
+to {
+    opacity:1;
+    transform:translateX(0)}
+
+}
+
+.p9-toast.p9-toast-out {
+    animation:p9-toast-out 0.3s ease forwards}
+
+@keyframes p9-toast-out {
+    to {
+    opacity:0;
+    transform:translateX(100%)}
+
+}
+
+.p9-toast-icon {
+    width:32px;
+    height:32px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    flex-shrink:0}
+
+.p9-toast.p9-toast-success .p9-toast-icon {
+    background:rgba(16,185,129,0.15);
+    color:var(--p9-cart-success)}
+
+.p9-toast.p9-toast-error .p9-toast-icon {
+    background:rgba(239,68,68,0.15);
+    color:var(--p9-cart-danger)}
+
+.p9-toast.p9-toast-info .p9-toast-icon {
+    background:rgba(30,144,255,0.15);
+    color:var(--p9-cart-primary)}
+
+.p9-toast-icon svg {
+    width:18px;
+    height:18px}
+
+.p9-toast-content {
+    flex:1}
+
+.p9-toast-title {
+    margin:0 0 2px;
+    font-size:14px;
+    font-weight:600;
+    color:var(--p9-cart-text)}
+
+.p9-toast-message {
+    margin:0;
+    font-size:13px;
+    color:var(--p9-cart-text-muted)}
+
+.p9-toast-close {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:28px;
+    height:28px;
+    background:transparent;
+    border:none;
+    border-radius:50%;
+    color:var(--p9-cart-text-muted);
+    cursor:pointer;
+    transition:var(--p9-cart-transition)}
+
+.p9-toast-close:hover {
+    background:rgba(100,116,139,0.1);
+    color:var(--p9-cart-text)}
+
+.p9-toast-close svg {
+    width:14px;
+    height:14px}
+
+/* ── Responsive: tablet ─────────────────────────────────────────── */
+@media (max-width:768px) {
+    .p9-cart-wrapper {
+    padding:16px}
+
+.p9-cart-header {
+    flex-direction:column;
+    gap:16px;
+    text-align:center;
+    padding:20px}
+
+.p9-cart-title-group {
+    flex-direction:column;
+    gap:12px}
+
+.p9-cart-title {
+    font-size:22px}
+
+.p9-cart-item {
+    grid-template-columns:80px 1fr;
+    gap:16px;
+    padding:16px}
+
+.p9-cart-item-image {
+    width:80px;
+    height:80px}
+
+.p9-cart-item-actions {
+    grid-column:1 / -1;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+    padding-top:16px;
+    margin-top:8px;
+    border-top:1px dashed var(--p9-cart-glass-border)}
+
+.p9-item-subtotal {
+    font-size:18px}
+
+.p9-quantity-wrapper {
+    margin-top:12px}
+
+.p9-cart-summary {
+    position:static}
+
+.p9-summary-total-value {
+    font-size:24px}
+
+.p9-empty-cart {
+    padding:60px 24px}
+
+.p9-empty-icon {
+    width:100px;
+    height:100px}
+
+.p9-empty-icon svg {
+    width:48px;
+    height:48px}
+
+.p9-empty-title {
+    font-size:24px}
+
+.p9-toast-container {
+    top:auto;
+    bottom:24px;
+    right:16px;
+    left:16px}
+
+.p9-toast {
+    max-width:none}
+
+}
+
+/* ── Responsive: mobile phones ──────────────────────────────────── */
+@media (max-width:480px) {
+    .p9-cart-item {
+    grid-template-columns:1fr;
+    text-align:center}
+
+.p9-cart-item-image {
+    width:100%;
+    height:180px;
+    margin:0 auto}
+
+.p9-cart-item-details {
+    align-items:center}
+
+.p9-cart-item-meta {
+    justify-content:center}
+
+.p9-quantity-wrapper {
+    justify-content:center}
+
+.p9-cart-item-actions {
+    flex-direction:column;
+    gap:12px}
+
+.p9-coupon-input-wrap {
+    flex-direction:column}
+
+.p9-btn {
+    padding:14px 20px;
+    font-size:14px}
+
+}
+
+/* ── Print styles ───────────────────────────────────────────────── */
+@media print {
+    .p9-cart-wrapper {
+    padding:0}
+
+.p9-cart-container {
+    display:block}
+
+.p9-cart-header,.p9-cart-item,.p9-cart-summary {
+    background:white !important;
+    box-shadow:none !important;
+    border:1px solid #ddd !important;
+    backdrop-filter:none !important}
+
+.p9-remove-btn,.p9-quantity-control,.p9-coupon-section,.p9-summary-actions {
+    display:none !important}
+
+}
+
+/* ── Reduced motion accessibility ───────────────────────────────── */
+@media (prefers-reduced-motion:reduce) {
+    *,*::before,*::after {
+    animation-duration:0.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.01ms !important}
+
+}
+
+.p9-qty-btn:focus,.p9-remove-btn:focus,.p9-coupon-toggle:focus,.p9-coupon-input:focus,.p9-coupon-apply:focus,.p9-btn:focus {
+    outline:2px solid var(--p9-cart-primary);
+    outline-offset:2px}
+
+/* ── Screen reader only utility ─────────────────────────────────── */
+.p9-sr-only {
+    position:absolute;
+    width:1px;
+    height:1px;
+    padding:0;
+    margin:-1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    white-space:nowrap;
+    border:0}
+
+
+/* Utility classes (replaces inline styles) */
+.p9-svg-push-right { margin-left: auto; }

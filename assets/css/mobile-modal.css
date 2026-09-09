@@ -1,0 +1,159 @@
+/**
+ * ===========================================================================
+ * Portal Cloud 9 - Mobile Modal Styles
+ * ===========================================================================
+ * 
+ * Clean, modern mobile thread modal UI
+ * 
+ * @package Portal_Cloud_9
+ * @version 8.10.1
+ * @author Brian Agoi (Gradyzer)
+ * ===========================================================================
+ */
+
+/* ===========================================================================
+   Responsive Adjustments
+   =========================================================================== */
+
+@media (max-width: 768px) {
+    .p9-mobile-header {
+        padding-top: env(safe-area-inset-top, 12px);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+    
+    .p9-mobile-thread-modal {
+        height: 100vh;
+        height: 100dvh;
+        height: -webkit-fill-available;
+    }
+    
+    .p9-mobile-reply {
+        padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    }
+    
+    .p9-mobile-messages {
+        padding-bottom: 100px; /* More space for floating reply */
+    }
+}
+
+/* Landscape mode adjustments */
+@media (max-width: 768px) and (orientation: landscape) {
+    .p9-mobile-thread-modal.keyboard-visible .p9-mobile-reply {
+        transform: translateY(-180px); /* Less movement in landscape */
+    }
+    
+    .p9-mobile-messages {
+        padding-bottom: 70px;
+    }
+}
+
+/* Small phones */
+@media (max-width: 360px) {
+    .p9-mobile-reply {
+        padding: 10px 12px;
+    }
+    
+    .p9-mobile-textarea {
+        padding: 10px 46px 10px 14px;
+        min-height: 44px;
+        font-size: 15px;
+    }
+    
+    .p9-mobile-send {
+        width: 36px;
+        height: 36px;
+        right: 6px;
+        bottom: 6px;
+    }
+    
+    .p9-mobile-send svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .p9-mobile-char-count {
+        right: 50px;
+        bottom: 14px;
+        font-size: 10px;
+    }
+}
+
+/* iOS Safari specific */
+@supports (-webkit-touch-callout: none) {
+    .p9-mobile-reply {
+        padding-bottom: calc(12px + max(env(safe-area-inset-bottom), 12px));
+    }
+    
+    .p9-mobile-thread-modal {
+        height: -webkit-fill-available;
+    }
+}
+
+/* Android Chrome */
+@media (-webkit-min-device-pixel-ratio:0) and (max-width: 768px) {
+    .p9-mobile-thread-modal.keyboard-visible .p9-mobile-reply {
+        transform: translateY(-280px); /* Android keyboards are often taller */
+    }
+}
+
+/* ===========================================================================
+   Performance Optimizations
+   =========================================================================== */
+
+.p9-mobile-thread-modal,
+.p9-mobile-modal-overlay {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.p9-mobile-messages {
+    contain: layout style paint;
+}
+
+/* ===========================================================================
+   Mobile Messages - Additional Fixes
+   =========================================================================== */
+
+/* Ensure messages are visible */
+.p9-mobile-messages-list {
+    width: 100%;
+    min-height: 100px;
+}
+
+/* Message styles (inherit from inbox.css but ensure visibility) */
+.p9-mobile-messages-list .p9-message {
+    margin-bottom: 12px;
+    max-width: 80%;
+}
+
+.p9-mobile-messages-list .p9-message-received {
+    align-self: flex-start;
+}
+
+.p9-mobile-messages-list .p9-message-sent {
+    align-self: flex-end;
+}
+
+/* No messages state */
+.p9-mobile-messages-list .p9-no-messages {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--p9-text-tertiary);
+    font-size: 14px;
+}
+
+/* Ensure modal is on top */
+.p9-mobile-thread-modal.p9-active {
+    display: flex !important;
+}
+
+/* Keyboard handling classes */
+.p9-keyboard-open {
+    overflow: hidden;
+}
+
+.p9-keyboard-open .p9-mobile-thread-modal {
+    height: calc(100vh - 300px);
+}

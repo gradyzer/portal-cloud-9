@@ -1,0 +1,806 @@
+/**
+ * ============================================================================
+ * Portal Cloud 9 - Visitor Analytics Styles
+ * ============================================================================
+ *
+ * Styles for the visitor analytics dashboard tab including:
+ * - Analytics summary stat cards and counters
+ * - Page views and unique visitors chart containers
+ * - Traffic source breakdown and referrer lists
+ * - Date range filter and period selector
+ * - License activation banner
+ * - Light and dark mode theme variables
+ * - Mobile-responsive grid and table adjustments
+ *
+ * @package Portal_Cloud_9
+ * @version 8.6.0
+ * @author  Brian Agoi (Gradyzer)
+ * @company Gradyzer
+ * @license GPL-2.0+
+ * ============================================================================
+ */
+
+/* ---- License activation banner ---------------------------- */
+.p9-va-license-banner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.4rem;
+    background: linear-gradient(135deg, rgba(30,144,255,0.1) 0%, rgba(0,0,0,0.05) 100%);
+    border: 1px solid rgba(30,144,255,0.3);
+    border-left: 4px solid #1E90FF;
+    border-radius: 14px;
+    flex-wrap: wrap;
+}
+
+.p9-va-license-banner-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+}
+
+.p9-va-license-banner-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 200px;
+}
+
+.p9-va-license-banner-text strong {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--p9-text, #1e293b);
+}
+
+.p9-va-license-banner-text span {
+    font-size: 0.83rem;
+    color: var(--p9-muted, #64748b);
+}
+
+.p9-va-license-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 18px;
+    background: linear-gradient(135deg, #1E90FF 0%, #000000 100%);
+    color: #ffffff !important;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.p9-va-license-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(30,144,255,0.35);
+    color: #ffffff !important;
+}
+
+/* ---- Locked stat card ------------------------------------- */
+.p9-va-card-locked {
+    opacity: 0.6;
+    filter: grayscale(0.5);
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.p9-va-card-locked .p9-va-card-sub {
+    pointer-events: all; /* allow the link inside to still work */
+}
+
+.p9-va-card-locked:hover {
+    transform: none !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
+}
+
+.p9-va-lock-icon {
+    font-size: 0.8rem;
+    margin-left: 4px;
+    opacity: 0.8;
+}
+
+.p9-va-val-locked {
+    color: var(--p9-muted, #94a3b8) !important;
+    font-size: 1.4rem !important;
+    letter-spacing: 0.2em;
+}
+
+.p9-va-unlock-link {
+    color: #1E90FF;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-decoration: none;
+    pointer-events: all;
+}
+
+.p9-va-unlock-link:hover {
+    text-decoration: underline;
+}
+
+/* ---- Locked section (chart / date range) ------------------ */
+.p9-va-section-locked {
+    position: relative;
+    overflow: hidden;
+}
+
+.p9-va-lock-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(248, 250, 252, 0.88);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    z-index: 10;
+}
+
+.p9-va-lock-overlay-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.p9-va-lock-overlay-icon {
+    font-size: 2.2rem;
+}
+
+.p9-va-lock-overlay-inner p {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--p9-muted, #64748b);
+}
+
+/* Dark mode overrides for lock elements */
+
+
+/* ---- Layout ------------------------------------------------ */
+.p9-va-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: clamp(1rem, 3vw, 2rem);
+    color: var(--p9-text, #1e293b);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ---- Page header ------------------------------------------ */
+.p9-va-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(30, 144, 255, 0.15);
+}
+
+.p9-va-header h2 {
+    margin: 0;
+    font-size: clamp(1.3rem, 3vw, 1.7rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, #1E90FF, #0050bb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.p9-va-header p {
+    margin: 0.2rem 0 0;
+    font-size: 0.88rem;
+    color: var(--p9-muted, #64748b);
+}
+
+.p9-va-header-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #1E90FF 0%, #000000 100%);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(30,144,255,0.35);
+}
+
+/* ---- Online pulse badge ------------------------------------ */
+.p9-va-online-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    background: rgba(34,197,94,0.12);
+    border: 1px solid rgba(34,197,94,0.3);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #16a34a;
+    margin-left: auto;
+}
+
+.p9-va-online-dot {
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+    animation: p9-pulse-dot 2s infinite;
+}
+
+@keyframes p9-pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.5; transform: scale(1.3); }
+}
+
+/* Flash when the online count changes */
+.p9-va-online-badge.p9-va-badge-flash {
+    background: rgba(34,197,94,0.25);
+    transition: background 0.15s ease;
+}
+
+/* ---- Stat cards ------------------------------------------- */
+.p9-va-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+}
+
+.p9-va-card {
+    background: var(--p9-panel, rgba(255,255,255,0.8));
+    border: 1px solid var(--p9-border, rgba(0,0,0,0.08));
+    border-radius: 16px;
+    padding: 1.4rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.p9-va-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+}
+
+.p9-va-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #1E90FF, #000000);
+    border-radius: 16px 16px 0 0;
+}
+
+.p9-va-card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.p9-va-card-icon.today   { background: rgba(30,144,255,0.12); }
+.p9-va-card-icon.week    { background: rgba(139,92,246,0.12); }
+.p9-va-card-icon.month   { background: rgba(249,115,22,0.12); }
+.p9-va-card-icon.year    { background: rgba(34,197,94,0.12); }
+
+.p9-va-card-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--p9-muted, #64748b);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.p9-va-card-value {
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--p9-text, #1e293b);
+}
+
+.p9-va-card-sub {
+    font-size: 0.78rem;
+    color: var(--p9-muted, #64748b);
+}
+
+/* Loading shimmer on values */
+.p9-va-loading .p9-va-card-value {
+    background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+    background-size: 200% 100%;
+    animation: p9-shimmer 1.4s infinite;
+    border-radius: 8px;
+    color: transparent;
+    min-width: 60px;
+    min-height: 36px;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+    background-clip: initial;
+}
+
+@keyframes p9-shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* ---- 30-day chart ----------------------------------------- */
+
+
+
+
+
+
+
+
+
+
+/* ---- Date range picker ------------------------------------ */
+.p9-va-range-section {
+    background: var(--p9-panel, rgba(255,255,255,0.8));
+    border: 1px solid var(--p9-border, rgba(0,0,0,0.08));
+    border-radius: 16px;
+    padding: 1.5rem;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.p9-va-range-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.p9-va-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+    min-width: 140px;
+}
+
+.p9-va-field label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--p9-muted, #64748b);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.p9-va-field input[type="date"] {
+    padding: 10px 14px;
+    border: 2px solid var(--p9-border, rgba(0,0,0,0.1));
+    border-radius: 10px;
+    font-size: 0.9rem;
+    color: var(--p9-text, #1e293b);
+    background: var(--p9-bg-input, #ffffff);
+    outline: none;
+    transition: border-color 0.2s;
+    font-family: inherit;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.p9-va-field input[type="date"]:focus {
+    border-color: #1E90FF;
+    box-shadow: 0 0 0 3px rgba(30,144,255,0.15);
+}
+
+.p9-va-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 22px;
+    background: linear-gradient(135deg, #1E90FF 0%, #000000 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.p9-va-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(30,144,255,0.35);
+}
+
+.p9-va-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.p9-va-btn svg,
+.p9-va-btn span {
+    color: #ffffff;
+    stroke: #ffffff;
+    fill: none;
+}
+
+/* ---- Range result card ------------------------------------ */
+.p9-va-range-result {
+    display: none;
+    margin-top: 1.5rem;
+}
+
+.p9-va-range-result.active {
+    display: block;
+}
+
+.p9-va-result-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.p9-va-result-stat {
+    flex: 1;
+    min-width: 130px;
+    background: linear-gradient(135deg, rgba(30,144,255,0.08) 0%, rgba(0,0,0,0.04) 100%);
+    border: 1px solid rgba(30,144,255,0.18);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    text-align: center;
+}
+
+.p9-va-result-stat-val {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1E90FF;
+    line-height: 1;
+}
+
+.p9-va-result-stat-lbl {
+    font-size: 0.78rem;
+    color: var(--p9-muted, #64748b);
+    font-weight: 500;
+    margin-top: 4px;
+}
+
+.p9-va-range-canvas-wrap {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    margin-top: 1rem;
+}
+
+#p9-va-range-chart {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* ---- Peak traffic section --------------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Dark mode */
+
+
+
+/* ---- Error / empty states --------------------------------- */
+.p9-va-error {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.2);
+    border-radius: 10px;
+    font-size: 0.88rem;
+    color: #dc2626;
+    margin-top: 0.5rem;
+}
+
+.p9-va-info {
+    font-size: 0.83rem;
+    color: var(--p9-muted, #64748b);
+    margin-top: 0.6rem;
+}
+
+/* ---- Dark mode overrides ---------------------------------- */
+
+    .p9-va-card-value {
+        font-size: 1.7rem;
+    }
+
+    /* Form: stack inputs then button full-width */
+    .p9-va-range-form {
+        flex-direction: column;
+    }
+
+    .p9-va-field {
+        min-width: 0; /* remove the 140px minimum so fields fill container */
+        width: 100%;
+    }
+
+    .p9-va-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Result stat row: 2-column grid on mobile instead of single-row flex */
+    .p9-va-result-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+
+    /* Third stat card (date range label) spans full width */
+    .p9-va-result-row .p9-va-result-stat:last-child {
+        grid-column: 1 / -1;
+        min-width: 0 !important;
+        flex: unset !important;
+    }
+
+    /* Scale down the big numbers so they fit side-by-side */
+    .p9-va-result-stat-val {
+        font-size: 1.4rem;
+    }
+
+    
+
+    .p9-va-header {
+        flex-wrap: wrap;
+    }
+
+    .p9-va-online-badge {
+        margin-left: 0;
+    }
+
+    .p9-va-range-canvas-wrap {
+        height: 130px;
+    }
+
+    
+
+    
+
+    
+}
+
+/* ============================================================================
+   NEW STYLES v9.0.0 – Clock, Calendar, Filter Pills, Hourly Range
+   ============================================================================ */
+
+/* ---- Section header (title + filter pills on same row) ---- */
+
+
+
+
+.p9-va-hourly-header {
+    margin-bottom: 0.75rem !important;
+}
+
+/* ---- Filter pill group ------------------------------------ */
+
+
+
+
+
+
+
+
+
+
+
+
+/* Dark mode filter pills */
+
+
+
+/* ============================================================
+   CLOCK ICON – Busiest Hour
+   ============================================================ */
+
+
+
+
+
+
+
+/* Hour hand smooth transition when JS updates it */
+#p9-clock-hour-hand {
+    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Pulsing center jewel animation */
+#p9-va-clock-svg circle:last-of-type {
+    animation: p9-clock-jewel-pulse 3s ease-in-out infinite;
+}
+
+@keyframes p9-clock-jewel-pulse {
+    0%, 100% { opacity: 0.7; }
+    50%       { opacity: 1; }
+}
+
+
+
+/* ============================================================
+   CALENDAR ICON – Busiest Day
+   ============================================================ */
+
+
+
+
+
+
+
+/* Calendar binding rings at the top */
+
+
+
+
+/* Red header bar – shows month */
+
+
+/* Light grey body */
+
+
+/* Abbreviated day name (Mon, Tue …) */
+
+
+/* Big date number */
+
+
+/* Decorative dots row */
+
+
+
+
+/* Dark mode calendar */
+
+
+
+
+
+/* ============================================================
+   HOURLY DISTRIBUTION – Custom Date Range Picker
+   ============================================================ */
+
+.p9-va-hourly-range-form {
+    background: linear-gradient(135deg, rgba(30,144,255,0.05) 0%, rgba(0,0,0,0.02) 100%);
+    border: 1.5px dashed rgba(30,144,255,0.3);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.p9-va-hourly-range-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0.8rem;
+}
+
+.p9-va-hourly-range-inner .p9-va-field {
+    flex: 1;
+    min-width: 130px;
+}
+
+.p9-va-hourly-range-inner .p9-va-field label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--p9-muted, #64748b);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 5px;
+}
+
+.p9-va-hourly-range-inner .p9-va-field label i {
+    color: #1E90FF;
+    font-size: 0.7rem;
+}
+
+/* Outline (secondary) button variant */
+.p9-va-btn-outline {
+    background: transparent !important;
+    border: 2px solid #1E90FF !important;
+    color: #1E90FF !important;
+}
+
+.p9-va-btn-outline:hover {
+    background: rgba(30,144,255,0.08) !important;
+    box-shadow: 0 4px 14px rgba(30,144,255,0.2) !important;
+}
+
+.p9-va-btn-outline svg,
+.p9-va-btn-outline span,
+.p9-va-btn-outline i {
+    color: #1E90FF !important;
+    stroke: #1E90FF !important;
+}
+
+/* Saved default badge */
+.p9-va-hourly-saved-badge {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #16a34a;
+}
+
+.p9-va-hourly-saved-badge i {
+    font-size: 0.9rem;
+}
+
+/* Dark mode hourly range form */
+
+/* ---- Responsive additions --------------------------------- */
+@media (max-width: 600px) {
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    .p9-va-hourly-range-inner {
+        flex-direction: column;
+    }
+
+    .p9-va-hourly-range-inner .p9-va-field {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .p9-va-hourly-range-inner .p9-va-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Utility classes (replaces inline styles) */
+.p9-access-denied { padding: 2rem; text-align: center; color: #ef4444; }

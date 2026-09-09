@@ -1,0 +1,743 @@
+/**
+ * ============================================================================
+ * Portal Cloud 9 - Mobile Dashboard Styles
+ * ============================================================================
+ *
+ * Styles for the mobile-optimised vendor/buyer dashboard including:
+ * - Bottom navigation bar and tab switching
+ * - Mobile top bar with branding and user avatar
+ * - Touch-friendly card and list layouts
+ * - Slide-in panel and drawer animations
+ * - Floating action buttons and quick actions
+ * - Light and dark mode theme variables
+ * - Viewport and safe-area inset handling
+ *
+ * @package Portal_Cloud_9
+ * @version 8.6.0
+ * @author  Brian Agoi (Gradyzer)
+ * @company Gradyzer
+ * @license GPL-2.0+
+ * ============================================================================
+ */
+:root {
+    --p9-topbar-h: 64px;
+    --p9-accent-1: #1E90FF;
+    --p9-accent-2: #0B6CD4;
+    --p9-bg-light: #f1f5f9;
+    --p9-panel-light: rgba(255, 255, 255, 0.75);
+    --p9-border-light: rgba(0, 0, 0, 0.08);
+    --p9-text-light: #1e293b;
+    --p9-muted-light: #64748b;
+    --p9-bg-dark: #0f172a;
+    --p9-panel-dark: rgba(30, 41, 59, 0.75);
+    --p9-border-dark: rgba(255, 255, 255, 0.08);
+    --p9-text-dark: #e2e8f0;
+    --p9-muted-dark: #94a3b8;
+    --p9-radius: 8px;
+    --p9-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    --p9-gradient: linear-gradient(135deg, #008CFF 0%, #000000 100%);
+    --p9-gradient-hover: linear-gradient(135deg, #0077E6 0%, #1a1a1a 100%);
+}
+
+body {
+    --p9-bg: var(--p9-bg-light);
+    --p9-panel: var(--p9-panel-light);
+    --p9-border: var(--p9-border-light);
+    --p9-text: var(--p9-text-light);
+    --p9-muted: var(--p9-muted-light);
+    overflow-x: hidden; /* iOS: lock document against horizontal scroll */
+}
+
+
+.portalcloud9-mobile-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999;
+    height: var(--p9-topbar-h);
+    background: var(--p9-panel);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--p9-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    gap: 12px;
+}
+
+.portalcloud9-topbar-left {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.portalcloud9-topbar-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 0;
+}
+
+.portalcloud9-topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.portalcloud9-page-title {
+    margin: 0;
+    font-size: clamp(0.95rem, 3.5vw, 1.2rem);
+    font-weight: 600;
+    color: var(--p9-text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.portalcloud9-page-icon {
+    font-size: 1.3em;
+    flex-shrink: 0;
+}
+
+.portalcloud9-page-icon svg {
+    width: 1.2em;
+    height: 1.2em;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.portalcloud9-page-icon i {
+    background: linear-gradient(135deg, #1E90FF 0%, #000000 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 1.2em;
+}
+
+
+.portalcloud9-page-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.portalcloud9-mobile-toggle {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    border: 1px solid rgb(255 255 255 / 0.2);
+    background: linear-gradient(135deg, rgb(30 144 255 / 0.25) 0%, rgb(0 0 0 / 0.15) 100%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 4px 16px rgb(30 144 255 / 0.25), inset 0 1px 0 rgb(255 255 255 / 0.15), inset 0 -1px 0 rgb(0 0 0 / 0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.portalcloud9-mobile-toggle::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #1E90FF 0%, #000000 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.portalcloud9-mobile-toggle:hover::before {
+    opacity: 0.15;
+}
+
+.portalcloud9-mobile-toggle:active {
+    transform: scale(0.92);
+    box-shadow: 0 2px 8px rgb(30 144 255 / 0.3), inset 0 1px 2px rgb(0 0 0 / 0.2);
+}
+
+.p9-toggle-icon {
+    width: 24px;
+    height: 24px;
+    display: block;
+    stroke: url(#mobile-icon-gradient);
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+
+.portalcloud9-mobile-toggle.open .p9-toggle-icon {
+    transform: rotate(90deg);
+}
+
+.portalcloud9-mobile-sidebar {
+    position: fixed;
+    top: var(--p9-topbar-h);
+    bottom: 0;
+    left: 0;
+    width: 280px;
+    background: var(--p9-panel);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: var(--p9-shadow);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 999998;
+    display: flex;
+    flex-direction: column;
+}
+
+.portalcloud9-mobile-sidebar.open {
+    transform: translateX(0);
+}
+
+.portalcloud9-mobile-sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--p9-border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--p9-panel);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 0 0 var(--p9-radius) var(--p9-radius);
+    margin: 0 16px 16px;
+    box-shadow: var(--p9-shadow);
+}
+
+.portalcloud9-mobile-sidebar-header .portalcloud9-user-info {
+    flex: 1;
+}
+
+.portalcloud9-mobile-sidebar-header .portalcloud9-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--p9-border);
+}
+
+.portalcloud9-mobile-sidebar-header .portalcloud9-user-details h3 {
+    font-size: 1rem;
+    margin: 0 0 2px;
+}
+
+.portalcloud9-mobile-sidebar-header .portalcloud9-user-details p {
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+.portalcloud9-mobile-close {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    border: 1px solid rgb(255 255 255 / 0.2);
+    background: linear-gradient(135deg, rgb(30 144 255 / 0.25) 0%, rgb(0 0 0 / 0.15) 100%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 2px 12px rgb(30 144 255 / 0.3), inset 0 1px 0 rgb(255 255 255 / 0.15), inset 0 -1px 0 rgb(0 0 0 / 0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 9px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.portalcloud9-mobile-close::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #1E90FF 0%, #000000 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.portalcloud9-mobile-close:hover::before {
+    opacity: 0.15;
+}
+
+.portalcloud9-mobile-close:active {
+    transform: scale(0.92);
+    box-shadow: 0 2px 8px rgb(30 144 255 / 0.25), inset 0 1px 2px rgb(0 0 0 / 0.2);
+}
+
+.p9-close-icon {
+    width: 24px;
+    height: 24px;
+    display: block;
+    stroke: #dc2626;
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+
+.portalcloud9-mobile-close:hover .p9-close-icon {
+    transform: rotate(90deg);
+}
+
+.portalcloud9-mobile-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 20px 0;
+}
+
+.portalcloud9-nav-item {
+    margin: 0 16px 4px;
+}
+
+.portalcloud9-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    color: var(--p9-muted);
+    text-decoration: none;
+    border-radius: var(--p9-radius);
+    transition: all 0.2s;
+}
+
+.portalcloud9-nav-link:hover {
+    background: rgb(102 126 234 / 0.15);
+    color: var(--p9-text);
+}
+
+.portalcloud9-nav-item.active .portalcloud9-nav-link {
+    background: #dbeafe;
+    color: #1d4ed8;
+    font-weight: 500;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.portalcloud9-mobile-main {
+    padding-top: var(--p9-topbar-h);
+    background: var(--p9-bg);
+    min-height: 100vh;
+    overflow-x: hidden; /* iOS: prevent any child from triggering horizontal scroll */
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+}
+
+/* Hide WordPress admin bar behind dashboard on mobile */
+body.portalcloud9-dashboard-wrapper #wpadminbar {
+    z-index: 1 !important;
+}
+
+/* Ensure body doesn't have margin-top from admin bar */
+body.portalcloud9-dashboard-wrapper.admin-bar {
+    margin-top: 0 !important;
+}
+
+.portalcloud9-content {
+    padding: 16px;
+    color: var(--p9-text);
+    overflow-x: hidden;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.portalcloud9-mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgb(0 0 0 / 0.5);
+    z-index: 999997;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(2px);
+}
+
+.portalcloud9-mobile-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.portalcloud9-topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.portalcloud9-notification-bubble {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: var(--p9-gradient);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: 0 3px 12px rgb(0 140 255 / 0.3);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.portalcloud9-notification-bubble:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 16px rgb(0 140 255 / 0.4);
+    background: var(--p9-gradient-hover);
+}
+
+.portalcloud9-notification-bubble:active {
+    transform: translateY(0);
+}
+
+.portalcloud9-bubble-icon {
+    font-size: 15px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.portalcloud9-bubble-icon svg {
+    width: 16px;
+    height: 16px;
+    stroke: #fff;
+}
+
+.portalcloud9-bubble-count {
+    background: rgb(255 255 255 / 0.3);
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    min-width: 18px;
+    text-align: center;
+    line-height: 1;
+}
+
+.portalcloud9-topbar-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--p9-border);
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.15), inset 0 1px 0 rgb(255 255 255 / 0.1);
+    background: var(--p9-panel);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.portalcloud9-topbar-avatar:hover {
+    transform: scale(1.05);
+    border-color: var(--p9-accent-1);
+    box-shadow: 0 4px 12px rgb(30 144 255 / 0.3), inset 0 1px 0 rgb(255 255 255 / 0.1);
+}
+
+.portalcloud9-topbar-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+@media (max-width: 380px) {
+    .portalcloud9-notification-bubble {
+        padding: 6px 10px;
+        font-size: 12px;
+        gap: 5px;
+    }
+    
+    .portalcloud9-bubble-icon {
+        font-size: 14px;
+    }
+    
+    .portalcloud9-bubble-count {
+        font-size: 10px;
+        padding: 2px 5px;
+        min-width: 16px;
+    }
+    
+    .portalcloud9-topbar-right {
+        gap: 8px;
+    }
+}
+
+@media (max-width: 320px) {
+    .portalcloud9-notification-bubble {
+        padding: 5px 8px;
+        border-radius: 18px;
+    }
+    
+    .portalcloud9-topbar-avatar {
+        width: 34px;
+        height: 34px;
+    }
+}
+
+/* Thread Action Buttons (Back & Delete) */
+.p9-mobile-thread-action-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    border: 1px solid rgb(255 255 255 / 0.2);
+    background: linear-gradient(135deg, rgb(30 144 255 / 0.25) 0%, rgb(0 0 0 / 0.15) 100%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 4px 16px rgb(30 144 255 / 0.25), inset 0 1px 0 rgb(255 255 255 / 0.15), inset 0 -1px 0 rgb(0 0 0 / 0.1);
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.p9-mobile-thread-action-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #1E90FF 0%, #000000 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.p9-mobile-thread-action-btn:hover::before,
+.p9-mobile-thread-action-btn:active::before {
+    opacity: 0.2;
+}
+
+.p9-mobile-thread-action-btn svg {
+    position: relative;
+    z-index: 1;
+    width: 22px;
+    height: 22px;
+    stroke: var(--p9-text);
+    transition: transform 0.2s ease;
+}
+
+.p9-mobile-thread-action-btn:active svg {
+    transform: scale(0.9);
+}
+
+/* Delete button specific styling */
+.p9-delete-action:hover {
+    border-color: #ef4444;
+}
+
+.p9-delete-action:hover svg {
+    stroke: #ef4444;
+}
+
+/* Ensure buttons are visible when shown */
+.p9-mobile-thread-action-btn[style*="display: flex"],
+.p9-mobile-thread-action-btn[style*="display:flex"] {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Thread User Info in Topbar Center */
+.p9-thread-user-info {
+    display: none;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+}
+
+.p9-thread-avatar-wrapper {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.p9-thread-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--p9-border);
+    position: relative;
+    z-index: 2;
+    display: block;
+}
+
+/* Online/Offline Status Indicator */
+.p9-thread-status-indicator {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--p9-panel);
+    z-index: 3;
+    transition: background-color 0.3s ease;
+}
+
+/* Online status - green */
+.p9-thread-status-indicator.online {
+    background-color: #10b981;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+/* Offline status - red */
+.p9-thread-status-indicator.offline {
+    background-color: #ef4444;
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+
+/* Away/idle status - yellow (optional) */
+.p9-thread-status-indicator.away {
+    background-color: #f59e0b;
+    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+}
+
+/* Pulsing Ring Animation */
+.p9-thread-avatar-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 2px solid #1E90FF;
+    z-index: 1;
+    animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.3);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+.p9-thread-user-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--p9-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    display: block;
+    line-height: 1.2;
+}
+
+/* User Details Container */
+.p9-thread-user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+/* Online/Offline Status Text */
+.p9-thread-status-text {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--p9-text-secondary);
+    white-space: nowrap;
+    line-height: 1;
+    opacity: 0.7;
+}
+
+.p9-thread-status-text.online {
+    color: #10b981;
+    opacity: 1;
+}
+
+.p9-thread-status-text.offline {
+    color: #ef4444;
+    opacity: 0.8;
+}
+
+/* Ensure thread user info is visible when shown */
+.p9-thread-user-info[style*="display: flex"],
+.p9-thread-user-info[style*="display:flex"] {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Dark mode support */
+
+
+/* Responsive adjustments */
+@media (max-width: 380px) {
+    .p9-thread-user-name {
+        font-size: 14px;
+        max-width: 120px;
+    }
+    
+    .p9-thread-status-text {
+        font-size: 10px;
+    }
+    
+    .p9-thread-avatar-wrapper,
+    .p9-thread-avatar {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 320px) {
+    .p9-thread-user-name {
+        font-size: 13px;
+        max-width: 100px;
+    }
+    
+    .p9-thread-status-text {
+        font-size: 9px;
+    }
+    
+    .p9-thread-avatar-wrapper,
+    .p9-thread-avatar {
+        width: 32px;
+        height: 32px;
+    }
+}

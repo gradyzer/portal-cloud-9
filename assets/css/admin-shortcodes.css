@@ -1,0 +1,247 @@
+/* ============================================
+   PORTAL CLOUD 9 - SHORTCODES PAGE STYLES
+   ============================================ */
+
+.portalcloud9-shortcodes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 28px;
+    margin-top: 32px;
+}
+
+/* Hero Banner */
+.portalcloud9-intro-card {
+    background: linear-gradient(135deg, #1E90FF 0%, #000000 100%);
+    border-radius: 24px;
+    padding: 48px;
+    color: #fff;
+    margin-bottom: 40px;
+    box-shadow: 0 12px 48px rgba(30, 144, 255, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.portalcloud9-intro-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
+    background-size: 40px 40px;
+    opacity: 0.3;
+}
+
+.portalcloud9-intro-left {
+    position: relative;
+    z-index: 1;
+}
+
+.portalcloud9-intro-card h1 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.portalcloud9-intro-card p {
+    margin: 0;
+    opacity: 0.95;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Glassmorphic Shortcode Cards */
+.portalcloud9-glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(30, 144, 255, 0.25);
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.portalcloud9-glass-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 56px rgba(30, 144, 255, 0.2);
+    border-color: rgba(30, 144, 255, 0.4);
+}
+
+.portalcloud9-hero-card {
+    grid-column: 1 / -1;
+    background: rgba(30, 144, 255, 0.05);
+    border: 2px solid rgba(30, 144, 255, 0.3);
+}
+
+.portalcloud9-glass-card h3 {
+    margin: 0 0 12px;
+    font-size: 22px;
+    background: linear-gradient(135deg, #1E90FF 0%, #000000 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+.portalcloud9-glass-card p {
+    margin: 0 0 16px;
+    color: #64748b;
+    flex: 1;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Code Blocks */
+.portalcloud9-code-block {
+    position: relative;
+    background: rgba(30, 144, 255, 0.05);
+    border: 1px solid rgba(30, 144, 255, 0.2);
+    border-radius: 12px;
+    padding: 14px 90px 14px 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    color: #000000;
+    font-weight: 600;
+}
+
+/* Copy Button */
+.portalcloud9-copy-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, #1E90FF 0%, #000000 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(30, 144, 255, 0.3);
+}
+
+.portalcloud9-copy-btn:hover {
+    transform: translateY(-50%) scale(1.05);
+    box-shadow: 0 4px 12px rgba(30, 144, 255, 0.4);
+}
+
+/* Extras Section */
+.portalcloud9-extras {
+    margin-top: 16px;
+}
+
+.portalcloud9-extras summary {
+    cursor: pointer;
+    color: #1E90FF;
+    font-weight: 600;
+    padding: 10px 0;
+    user-select: none;
+    list-style: none;
+}
+
+.portalcloud9-extras summary::-webkit-details-marker {
+    display: none;
+}
+
+.portalcloud9-extras summary::before {
+    content: '▸ ';
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.portalcloud9-extras[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.portalcloud9-extra-list {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0;
+}
+
+.portalcloud9-extra-list li {
+    margin-bottom: 16px;
+}
+
+.portalcloud9-extra-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #475569;
+}
+
+/* CTA Section */
+.portalcloud9-shortcodes-cta {
+    text-align: center;
+    padding: 48px;
+    background: linear-gradient(135deg, #1E90FF 0%, #000000 100%);
+    color: #fff;
+    border-radius: 24px;
+    box-shadow: 0 12px 48px rgba(30, 144, 255, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.portalcloud9-shortcodes-cta::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
+    background-size: 40px 40px;
+    opacity: 0.3;
+}
+
+.portalcloud9-shortcodes-cta h3 {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 12px;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.portalcloud9-shortcodes-cta p {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 28px;
+    opacity: 0.95;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.portalcloud9-cta-btn {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    color: #1E90FF;
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.portalcloud9-cta-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    color: #1E90FF;
+}
+
+/* Responsive */
+@media (max-width: 782px) {
+    .portalcloud9-shortcodes-grid { grid-template-columns: 1fr; }
+    .portalcloud9-intro-card,
+    .portalcloud9-shortcodes-cta { padding: 32px 24px; }
+    .portalcloud9-intro-card h1 { font-size: 28px; }
+    .portalcloud9-code-block { padding: 12px 80px 12px 12px; }
+}

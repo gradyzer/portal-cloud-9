@@ -1,0 +1,897 @@
+
+/* ============================================
+   TOGGLE INDICATOR STYLES
+   ============================================ */
+        .pc9-toggle-indicator {
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 8px;
+            transition: color .2s ease;
+        }
+        .pc9-toggle-indicator[data-state="saving"] { color: #888; }
+        .pc9-toggle-indicator[data-state="saved"]  { color: #16a34a; }
+        .pc9-toggle-indicator[data-state="error"]  { color: #dc2626; }
+
+/* ============================================
+   GLASSMORPHIC SETTINGS CARD STYLES
+   ============================================ */
+            .pc9-settings-glass-card {
+                background: rgba(255, 255, 255, 0.7);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border: 1px solid rgba(30, 144, 255, 0.25);
+                border-radius: 20px;
+                padding: 0;
+                margin-bottom: 24px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+                transition: all 0.3s ease;
+                overflow: hidden;
+            }
+
+            .pc9-settings-glass-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 12px 48px rgba(30, 144, 255, 0.15);
+                border-color: rgba(30, 144, 255, 0.4);
+            }
+
+            /* Danger Card - Red Theme */
+            .pc9-danger-card {
+                border-color: rgba(239, 68, 68, 0.25);
+            }
+
+            .pc9-danger-card:hover {
+                box-shadow: 0 12px 48px rgba(239, 68, 68, 0.15);
+                border-color: rgba(239, 68, 68, 0.4);
+            }
+
+            .pc9-danger-card .pc9-card-header {
+                background: linear-gradient(135deg, #ef4444 0%, #7f1d1d 100%);
+            }
+
+            /* Card Header with Gradient */
+            .pc9-card-header {
+                background: linear-gradient(135deg, #1E90FF 0%, #000000 100%);
+                padding: 20px 28px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .pc9-card-icon {
+                font-size: 24px;
+                line-height: 1;
+            }
+
+            .pc9-card-header h3 {
+                margin: 0;
+                color: #ffffff;
+                font-size: 20px;
+                font-weight: 700;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            }
+
+            /* Card Body */
+            .pc9-card-body {
+                padding: 28px;
+            }
+
+            .pc9-card-body .form-table {
+                margin: 0;
+                background: transparent;
+            }
+
+            .pc9-card-body .form-table th {
+                padding: 16px 0;
+                font-weight: 600;
+                color: #1e293b;
+                font-size: 14px;
+                width: 35%;
+                vertical-align: middle;
+            }
+
+            .pc9-card-body .form-table td {
+                padding: 16px 0;
+                vertical-align: middle;
+            }
+
+            .pc9-card-body .form-table tr {
+                border-bottom: 1px solid rgba(30, 144, 255, 0.1);
+            }
+
+            .pc9-card-body .form-table tr:last-child {
+                border-bottom: none;
+            }
+
+            .pc9-danger-card .pc9-card-body .form-table tr {
+                border-bottom-color: rgba(239, 68, 68, 0.1);
+            }
+
+            /* Input Fields Styling */
+            .pc9-card-body input[type="number"],
+            .pc9-card-body input[type="email"],
+            .pc9-card-body input[type="text"],
+            .pc9-card-body select {
+                border: 2px solid rgba(30, 144, 255, 0.2) !important;
+                border-radius: 10px !important;
+                padding: 10px 14px !important;
+                font-size: 14px !important;
+                transition: all 0.3s ease !important;
+                background: rgba(255, 255, 255, 0.9) !important;
+                box-shadow: none !important;
+            }
+
+            .pc9-card-body input:focus,
+            .pc9-card-body select:focus {
+                border-color: #1E90FF !important;
+                box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.1) !important;
+                outline: none !important;
+            }
+
+            .pc9-card-body input:disabled {
+                background: rgba(148, 163, 184, 0.1) !important;
+                cursor: not-allowed;
+                opacity: 0.7;
+            }
+
+            /* Description Text */
+            .pc9-card-body .description {
+                font-size: 13px;
+                color: #64748b;
+                margin-top: 6px;
+                line-height: 1.5;
+            }
+
+            /* Toggle Switch Styling */
+            .pc9-card-body input[type="checkbox"] {
+                position: relative;
+                width: 50px;
+                height: 26px;
+                -webkit-appearance: none;
+                appearance: none;
+                background: #cbd5e1;
+                outline: none;
+                border-radius: 20px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                margin-right: 12px;
+            }
+
+            .pc9-card-body input[type="checkbox"]:checked {
+                background: linear-gradient(135deg, #1E90FF 0%, #0066cc 100%);
+            }
+
+            .pc9-card-body input[type="checkbox"]:before {
+                content: '';
+                position: absolute;
+                width: 22px;
+                height: 22px;
+                border-radius: 50%;
+                top: 2px;
+                left: 2px;
+                background: #ffffff;
+                transition: all 0.3s ease;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            }
+
+            .pc9-card-body input[type="checkbox"]:checked:before {
+                left: 26px;
+            }
+
+            .pc9-card-body label {
+                display: inline-flex;
+                align-items: center;
+                cursor: pointer;
+                font-weight: 500;
+                color: #475569;
+            }
+
+            /* Submit Button Card */
+            .pc9-submit-card {
+                background: rgba(255, 255, 255, 0.7);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border: 1px solid rgba(30, 144, 255, 0.25);
+                border-radius: 20px;
+                padding: 24px 28px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+                text-align: right;
+            }
+
+            .pc9-submit-card #submit {
+                background: linear-gradient(135deg, #1E90FF 0%, #000000 100%) !important;
+                color: #fff !important;
+                border: none !important;
+                border-radius: 12px !important;
+                padding: 14px 32px !important;
+                font-size: 16px !important;
+                font-weight: 600 !important;
+                cursor: pointer !important;
+                transition: all 0.3s ease !important;
+                box-shadow: 0 4px 16px rgba(30, 144, 255, 0.3) !important;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+            }
+
+            .pc9-submit-card #submit:hover {
+                transform: translateY(-2px) !important;
+                box-shadow: 0 6px 24px rgba(30, 144, 255, 0.4) !important;
+            }
+
+            /* ----  Right Column Glass Cards  ---- */
+            .portalcloud9-glass-card {
+                background: rgba(255, 255, 255, 0.7);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border: 1px solid rgba(30, 144, 255, 0.25);
+                border-radius: 20px;
+                padding: 28px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+                transition: all 0.3s ease;
+            }
+            
+            .portalcloud9-glass-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 12px 48px rgba(30, 144, 255, 0.15);
+            }
+            
+            .portalcloud9-glass-card h3 {
+                margin-top: 0;
+                margin-bottom: 16px;
+                font-size: 18px;
+                background: linear-gradient(135deg, #1E90FF 0%, #000000 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                font-weight: 700;
+            }
+            
+            .portalcloud9-glass-card:not(:last-child) {
+                margin-bottom: 24px;
+            }
+
+            /* ----  Two-column grid  ---- */
+            .portalcloud9-settings-columns {
+                display: grid;
+                grid-template-columns: 1fr 420px;
+                gap: 32px;
+                align-items: start;
+            }
+
+            /* ----  Left column  ---- */
+            .portalcloud9-settings-left {
+                min-width: 0;
+            }
+
+            /* ----  Right column (cards)  ---- */
+            .portalcloud9-settings-right {
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            /* ----  List Styling  ---- */
+            .portalcloud9-list {
+                margin: 0;
+                padding-left: 20px;
+            }
+            
+            .portalcloud9-list li {
+                margin-bottom: 8px;
+                color: #475569;
+            }
+            
+            .portalcloud9-list li code {
+                background: rgba(30, 144, 255, 0.1);
+                padding: 2px 8px;
+                border-radius: 4px;
+                font-size: 13px;
+                color: #1E90FF;
+                font-weight: 600;
+            }
+            
+            /* ----  Action Buttons  ---- */
+            .portalcloud9-action-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .portalcloud9-btn {
+                background: linear-gradient(135deg, #1E90FF 0%, #000000 100%);
+                color: #fff;
+                padding: 12px 16px;
+                border: none;
+                border-radius: 10px;
+                font-size: 14px;
+                font-weight: 600;
+                text-align: center;
+                text-decoration: none;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 16px rgba(30, 144, 255, 0.3);
+                display: block;
+            }
+            
+            .portalcloud9-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 24px rgba(30, 144, 255, 0.4);
+                color: #fff;
+            }
+
+            /* ----  Responsive  ---- */
+            @media (max-width: 960px) {
+                .portalcloud9-settings-columns {
+                    grid-template-columns: 1fr;
+                }
+                
+                .pc9-card-body .form-table th {
+                    width: 100%;
+                    display: block;
+                    padding-bottom: 8px;
+                }
+                
+                .pc9-card-body .form-table td {
+                    display: block;
+                    padding-top: 0;
+                }
+            }
+
+            /* ----  License Status Styles  ---- */
+            .pc9-license-status-badge {
+                display: inline-block;
+                padding: 6px 16px;
+                border-radius: 20px;
+                font-size: 12px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+            
+            .pc9-license-active {
+                background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                color: #fff;
+                box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            }
+
+/* ============================================
+   SHORTCODES PAGE STYLES
+   ============================================ */
+            .portalcloud9-shortcodes-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 28px;
+                margin-top: 32px;
+            }
+
+            /* Hero Banner with Dodger Blue Gradient */
+            .portalcloud9-intro-card {
+                background: linear-gradient(135deg, #1E90FF 0%, #000000 100%);
+                border-radius: 24px;
+                padding: 48px;
+                color: #fff;
+                margin-bottom: 40px;
+                box-shadow: 0 12px 48px rgba(30, 144, 255, 0.4);
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .portalcloud9-intro-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
+                background-size: 40px 40px;
+                opacity: 0.3;
+            }
+            
+            .portalcloud9-intro-left {
+                position: relative;
+                z-index: 1;
+            }
+            
+            .portalcloud9-intro-card h1 {
+                font-size: 36px;
+                font-weight: 700;
+                margin-bottom: 16px;
+            }
+
+            .portalcloud9-intro-card p {
+                margin: 0;
+                opacity: 0.95;
+                font-size: 18px;
+                line-height: 1.6;
+            }
+
+            /* Glassmorphic Shortcode Cards */
+            .portalcloud9-glass-card {
+                background: rgba(255, 255, 255, 0.7);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border: 1px solid rgba(30, 144, 255, 0.25);
+                border-radius: 20px;
+                padding: 32px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+                transition: all 0.3s ease;
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                overflow: hidden;
+                box-sizing: border-box;
+            }
+
+            .portalcloud9-glass-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 16px 56px rgba(30, 144, 255, 0.2);
+                border-color: rgba(30, 144, 255, 0.4);
+            }
+
+            .portalcloud9-hero-card {
+                grid-column: 1 / -1;
+                background: rgba(30, 144, 255, 0.05);
+                border: 2px solid rgba(30, 144, 255, 0.3);
+            }
+
+            .portalcloud9-glass-card h3 {
+                margin: 0 0 12px;
+                font-size: 22px;
+                background: linear-gradient(135deg, #1E90FF 0%, #000000 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                font-weight: 700;
+            }
+
+            .portalcloud9-glass-card p {
+                margin: 0 0 16px;
+                color: #64748b;
+                flex: 1;
+                font-size: 15px;
+                line-height: 1.6;
+            }
+
+            /* Code Blocks */
+            .portalcloud9-code-block {
+                position: relative;
+                background: rgba(30, 144, 255, 0.05);
+                border: 1px solid rgba(30, 144, 255, 0.2);
+                border-radius: 12px;
+                padding: 14px 90px 14px 16px;
+                font-family: 'Courier New', monospace;
+                font-size: 14px;
+                color: #000000;
+                font-weight: 600;
+            }
+
+
+            /* Copy Button */
+            .portalcloud9-copy-btn {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: linear-gradient(135deg, #1E90FF 0%, #000000 100%);
+                color: #fff;
+                border: none;
+                border-radius: 8px;
+                padding: 8px 16px;
+                font-size: 13px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                box-shadow: 0 2px 8px rgba(30, 144, 255, 0.3);
+            }
+
+            .portalcloud9-copy-btn:hover {
+                transform: translateY(-50%) scale(1.05);
+                box-shadow: 0 4px 12px rgba(30, 144, 255, 0.4);
+            }
+
+            /* Extras Section */
+            .portalcloud9-extras {
+                margin-top: 16px;
+            }
+
+            .portalcloud9-extras summary {
+                cursor: pointer;
+                color: #1E90FF;
+                font-weight: 600;
+                padding: 10px 0;
+                user-select: none;
+                list-style: none;
+            }
+            
+            .portalcloud9-extras summary::-webkit-details-marker {
+                display: none;
+            }
+            
+            .portalcloud9-extras summary::before {
+                content: '▸ ';
+                display: inline-block;
+                transition: transform 0.2s ease;
+            }
+            
+            .portalcloud9-extras[open] summary::before {
+                transform: rotate(90deg);
+            }
+
+            .portalcloud9-extra-list {
+                list-style: none;
+                padding: 0;
+                margin: 16px 0 0;
+            }
+
+            .portalcloud9-extra-list li {
+                margin-bottom: 16px;
+            }
+
+            .portalcloud9-extra-label {
+                display: block;
+                font-weight: 600;
+                margin-bottom: 8px;
+                color: #475569;
+            }
+
+            /* CTA Section */
+            .portalcloud9-shortcodes-cta {
+                text-align: center;
+                padding: 48px;
+                background: linear-gradient(135deg, #1E90FF 0%, #000000 100%);
+                color: #fff;
+                border-radius: 24px;
+                box-shadow: 0 12px 48px rgba(30, 144, 255, 0.4);
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .portalcloud9-shortcodes-cta::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
+                background-size: 40px 40px;
+                opacity: 0.3;
+            }
+
+            .portalcloud9-shortcodes-cta h3 {
+                position: relative;
+                z-index: 1;
+                margin: 0 0 12px;
+                font-size: 28px;
+                font-weight: 700;
+            }
+
+            .portalcloud9-shortcodes-cta p {
+                position: relative;
+                z-index: 1;
+                margin: 0 0 28px;
+                opacity: 0.95;
+                font-size: 16px;
+                line-height: 1.6;
+            }
+
+            .portalcloud9-cta-btn {
+                position: relative;
+                z-index: 1;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                background: #fff;
+                color: #1E90FF;
+                padding: 14px 32px;
+                border-radius: 12px;
+                font-weight: 700;
+                font-size: 16px;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            }
+
+            .portalcloud9-cta-btn:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+                color: #1E90FF;
+            }
+
+            /* Responsive */
+            @media(max-width:782px) {
+                .portalcloud9-shortcodes-grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .portalcloud9-intro-card,
+                .portalcloud9-shortcodes-cta {
+                    padding: 32px 24px;
+                }
+                
+                .portalcloud9-intro-card h1 {
+                    font-size: 28px;
+                }
+                
+                .portalcloud9-code-block {
+                    padding: 12px 80px 12px 12px;
+                }
+            }
+
+/* ============================================
+   GETTING STARTED PAGE STYLES
+   ============================================ */
+                .pc9-getting-started {
+                    max-width: 1200px;
+                    margin: 20px 0;
+                }
+                .pc9-feature-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                    gap: 20px;
+                    margin: 30px 0;
+                }
+                .pc9-feature-card {
+                    background: #fff;
+                    border: 1px solid #ddd;
+                    border-radius: 8px;
+                    padding: 25px;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+                }
+                .pc9-feature-card h3 {
+                    margin-top: 0;
+                    color: #1e90ff;
+                    font-size: 18px;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+                .pc9-feature-card h3 .dashicons {
+                    color: #1e90ff;
+                }
+                .pc9-feature-list {
+                    list-style: none;
+                    padding: 0;
+                    margin: 15px 0;
+                }
+                .pc9-feature-list li {
+                    padding: 8px 0;
+                    padding-left: 25px;
+                    position: relative;
+                    color: #555;
+                    line-height: 1.6;
+                }
+                .pc9-feature-list li:before {
+                    content: "✓";
+                    position: absolute;
+                    left: 0;
+                    color: #10b981;
+                    font-weight: bold;
+                }
+                .pc9-premium-badge {
+                    display: inline-block;
+                    background: linear-gradient(135deg, #1e90ff 0%, #0c4a6e 100%);
+                    color: #fff;
+                    padding: 3px 10px;
+                    border-radius: 12px;
+                    font-size: 11px;
+                    font-weight: 600;
+                    margin-left: 8px;
+                }
+                .pc9-shortcode-box {
+                    background: #f8f9fa;
+                    border: 1px solid #dee2e6;
+                    border-radius: 6px;
+                    padding: 15px;
+                    margin: 15px 0;
+                    font-family: 'Courier New', monospace;
+                }
+                .pc9-shortcode-box code {
+                    background: #fff;
+                    padding: 2px 6px;
+                    border-radius: 3px;
+                    color: #e83e8c;
+                    font-size: 13px;
+                }
+                .pc9-info-box {
+                    background: rgba(30, 144, 255, 0.05);
+                    border-left: 4px solid #1e90ff;
+                    padding: 15px 20px;
+                    margin: 20px 0;
+                    border-radius: 4px;
+                }
+                .pc9-info-box h4 {
+                    margin-top: 0;
+                    color: #1e90ff;
+                }
+                .pc9-comparison-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin: 20px 0;
+                    background: #fff;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+                }
+                .pc9-comparison-table th {
+                    background: linear-gradient(135deg, #1e90ff 0%, #0c4a6e 100%);
+                    color: #fff;
+                    padding: 15px;
+                    text-align: left;
+                    font-weight: 600;
+                }
+                .pc9-comparison-table td {
+                    padding: 12px 15px;
+                    border-bottom: 1px solid #eee;
+                }
+                .pc9-comparison-table tr:hover {
+                    background: #f8f9fa;
+                }
+                .pc9-yes {
+                    color: #10b981;
+                    font-weight: 600;
+                }
+                .pc9-enhanced {
+                    color: #1e90ff;
+                    font-weight: 600;
+                }
+                .pc9-section {
+                    background: #fff;
+                    border: 1px solid #ddd;
+                    border-radius: 8px;
+                    padding: 30px;
+                    margin: 20px 0;
+                }
+                .pc9-section h2 {
+                    margin-top: 0;
+                    color: #1e3a8a;
+                    border-bottom: 2px solid #1e90ff;
+                    padding-bottom: 10px;
+                }
+
+/* ============================================
+   LICENSE STATUS FOOTER STYLES
+   ============================================ */
+            body { margin-bottom: 50px !important; }
+            @media (max-width: 768px) {
+                #pc9-status-footer { font-size: 12px; padding: 10px 15px; }
+                body { margin-bottom: 45px !important; }
+            }
+
+
+/* ==========================================================================
+   Settings page – utility classes (replaces inline styles)
+   ========================================================================== */
+
+/* Page header */
+.pc9-settings-title {
+    color: #475569;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+.pc9-settings-version {
+    font-size: 14px;
+    font-weight: 600;
+    color: #94a3b8;
+    margin-left: 12px;
+}
+
+/* Purge button */
+.pc9-purge-btn {
+    background: linear-gradient(135deg, #ff0000, #800000);
+    color: #fff;
+    border: none;
+    font-weight: 700;
+    padding: 8px 20px;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+/* Purge description text */
+.pc9-purge-desc {
+    margin-top: 6px;
+    color: #dc2626;
+    font-weight: 600;
+}
+
+/* Purge modal overlay */
+.pc9-purge-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    background: rgba(0, 0, 0, .7);
+    align-items: center;
+    justify-content: center;
+}
+.pc9-purge-modal.is-open {
+    display: flex;
+}
+
+/* Purge modal inner box */
+.pc9-purge-modal-inner {
+    background: #fff;
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 480px;
+    width: calc(100% - 2rem);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, .4);
+    position: relative;
+}
+.pc9-purge-modal-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+.pc9-purge-modal-icon {
+    font-size: 3rem;
+    margin-bottom: .75rem;
+}
+.pc9-purge-modal-title {
+    margin: 0 0 .5rem;
+    color: #dc2626;
+    font-size: 1.375rem;
+}
+.pc9-purge-modal-intro {
+    margin: 0;
+    color: #555;
+    line-height: 1.6;
+}
+.pc9-purge-modal-list {
+    margin: 0 0 1.5rem 1.25rem;
+    color: #333;
+    line-height: 1.8;
+    font-size: .9375rem;
+}
+.pc9-purge-warning {
+    background: #fef2f2;
+    border: 1px solid #fca5a5;
+    border-radius: 8px;
+    padding: .875rem 1rem;
+    color: #dc2626;
+    font-weight: 600;
+    margin: 0 0 1.5rem;
+    font-size: .9375rem;
+}
+.pc9-purge-confirm-label {
+    margin: 0 0 .75rem;
+    font-size: .9375rem;
+    color: #333;
+}
+.pc9-purge-confirm-input {
+    width: 100%;
+    padding: .75rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+}
+.pc9-purge-modal-actions {
+    display: flex;
+    gap: .75rem;
+    justify-content: flex-end;
+}
+.pc9-btn-cancel {
+    border-radius: 999px;
+}
+.pc9-btn-confirm {
+    background: linear-gradient(135deg, #ff0000, #800000);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    font-weight: 700;
+    opacity: .5;
+    cursor: not-allowed;
+    transition: opacity .2s ease;
+}
+.pc9-btn-confirm.is-ready {
+    opacity: 1;
+    cursor: pointer;
+}
+.pc9-purge-status {
+    display: none;
+    margin-top: 1rem;
+    padding: .75rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: .9375rem;
+    text-align: center;
+}
